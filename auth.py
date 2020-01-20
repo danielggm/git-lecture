@@ -4,14 +4,18 @@ import sys
 
 def get_credentials():
     username = input('Enter your username: ')
-    password = sum([ord(letter) for letter in getpass.getpass('Enter your password: ')])
-    return username, password
+    password = getpass.getpass('Enter your password: ')
+    return username, pwhash(password)
 
 def authenticate(username, password, pwdb):
     if username in pwdb:
         if password == pwdb[username]:
             return True
     return False
+
+def pwhash(password):
+    hashed_password = sum([ord(letter) for letter in password])
+    return hashed_password
 
 def read_pwdb(pwdb_file):
     pwdb_file.seek(0)
