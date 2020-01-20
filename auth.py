@@ -4,7 +4,7 @@ import sys
 
 def get_credentials():
     username = input('Enter your username: ')
-    password = getpass.getpass('Enter your password: ')
+    password = sum([ord(letter) for letter in getpass.getpass('Enter your password: ')])
     return username, password
 
 def authenticate(username, password, pwdb):
